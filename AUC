@@ -1,3 +1,5 @@
+%% Code by Munir Gunes Kutlu
+% Contact gunes.kutlu@vanderbilt.edu
 
 pre_data1 = csvread( 'input(2).csv' ) %First photometry input file 
 pre_data = pre_data1(4000:12000,:); %Time points to extract
