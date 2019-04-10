@@ -1,0 +1,29 @@
+
+pre_data1 = csvread( 'input(2).csv' ) %First photometry input file 
+pre_data = pre_data1(4000:12000,:); %Time points to extract
+pre_AUCs = trapz(pre_data)
+csvwrite('output(1).csv',pre_AUCs) %Output files for AUC values
+
+post_data1 = csvread( input(2).csv' ) %Second photometry input file 
+post_data = post_data1(4000:12000,:); %Time points to extract
+post_AUCs = trapz(post_data)
+csvwrite('(output(2).csv',post_AUCs) %Output files for AUC values
+
+pre_mean= mean(pre_AUCs);
+post_mean=mean(post_AUCs);
+
+pre_SEM = std(pre_AUCs)/sqrt(length(pre_AUCs)); 
+post_SEM = std(post_AUCs)/sqrt(length(post_AUCs)); 
+
+
+a = horzcat(pre_mean,post_mean);
+b = horzcat(pre_SEM,post_SEM);
+
+
+ctrs = 1:2;
+data = a;
+figure(1)
+hBar = bar(ctrs, a);
+hold on
+errorbar(a,b)
+hold off
